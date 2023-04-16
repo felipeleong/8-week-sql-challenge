@@ -32,6 +32,7 @@ ORDER BY 1;
 | C           | 2          |
 
 ### 3. What was the first item from the menu purchased by each customer?
+````sql
 WITH BASE AS (
 	SELECT
 		s.customer_id,
@@ -56,8 +57,7 @@ ORDER BY 1;
 | A           | sushi        | 
 | B           | curry        | 
 | C           | ramen        |
-
-
+````
 
 
 
