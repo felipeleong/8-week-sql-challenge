@@ -8,3 +8,9 @@ JOIN dannys_diner.menu m ON m.product_id = s.product_id
 GROUP BY 1
 ORDER BY 1;
 ````
+#### Answer:
+| customer_id | total_sales |
+| ----------- | ----------- |
+| A           | 76          |
+| B           | 74          |
+| C           | 36          |
