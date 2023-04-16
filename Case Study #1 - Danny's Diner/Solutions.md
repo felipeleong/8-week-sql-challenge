@@ -15,7 +15,13 @@ ORDER BY 1;
 | B           | 74          |
 | C           | 36          |
 
+### 2.How many days has each customer visited the restaurant?
+````sql
+SELECT 
+	customer_id,
+	COUNT(DISTINCT order_date) as date
+FROM dannys_diner.sales
+GROUP BY 1
+ORDER BY 1;
+````
 
-"A"	76
-"B"	74
-"C"	36
