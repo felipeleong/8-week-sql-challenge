@@ -49,7 +49,7 @@ FROM BASE
 WHERE first_purchased = 1
 GROUP BY customer_id, product_name
 ORDER BY 1;
-
+````
 #### Answer:
 | customer_id | product_name | 
 | ----------- | ----------- |
@@ -57,7 +57,21 @@ ORDER BY 1;
 | A           | sushi        | 
 | B           | curry        | 
 | C           | ramen        |
-````
 
+### 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+````sql
+SELECT 
+	m.product_name,
+	COUNT(s.product_id) as count_of_product
+FROM dannys_diner.sales s 
+JOIN dannys_diner.menu m ON m.product_id = s.product_id
+GROUP BY 1
+ORDER BY 2 DESC
+LIMIT 1
+````
+#### Answer:
+| most_purchased | product_name | 
+| ----------- | ----------- |
+| 8       | ramen |
 
 
