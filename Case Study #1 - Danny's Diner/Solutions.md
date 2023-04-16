@@ -71,9 +71,10 @@ ORDER BY 2 DESC
 LIMIT 1
 ````
 #### Answer:
-| most_purchased | product_name | 
-| ----------- | ----------- |
-| 8       | ramen |
+| product_name | count_of_product |
+| --- | --- |
+| ramen | 8 |
+
 
 
 ### 5. Which item was the most popular for each customer?
@@ -93,13 +94,14 @@ FROM BASE
 WHERE RANK = 1
 ````
 #### Answer:
-| customer_id | product_name | order_count |
-| ----------- | ---------- |------------  |
-| A           | ramen        |  3   |
-| B           | sushi        |  2   |
-| B           | curry        |  2   |
-| B           | ramen        |  2   |
-| C           | ramen        |  3   |
+| customer_id | product_name | count_of_product |
+| --- | --- | --- |
+| A | ramen | 3 |
+| B | sushi | 2 |
+| B | curry | 2 |
+| B | ramen | 2 |
+| C | ramen | 3 |
+
 
 ### 6. Which item was purchased first by the customer after they became a member?
 ````sql
@@ -118,10 +120,10 @@ ORDER BY join_date,order_date
 ````
 #### Answer:
 
-|customer_id|product_name| join_date | 	 order_date|
-|-----------|----------- |-----------|	-----------|
-|A	    |	curry	 |2021-01-07 |	2021-01-07 |
-|B	    |	sushi	 |2021-01-09 |	2021-01-11 |
+| customer_id | product_name | join_date  | order_date |
+| ---        | ---          | ---        | ---        |
+| A          | curry        | 2021-01-07 | 2021-01-07 |
+| B          | sushi        | 2021-01-09 | 2021-01-11 |
 
 ### 7. Which item was purchased just before the customer became a member?
 ````sql
@@ -139,18 +141,19 @@ WHERE first_item = 1
 ORDER BY join_date,order_date 
 ````
 ### Answer:
-|customer_id |product_name| join_date |	order_date|
-|------------|------------|-----------|-----------|
-|A	     |	sushi	  | 2021-01-07|	2021-01-01|
-|A	     |	curry	  | 2021-01-07|	2021-01-01|
-|B           |	sushi	  | 2021-01-09|	2021-01-04|
+| customer_id | product_name | join_date  | order_date |
+| ---        | ---          | ---        | ---        |
+| A          | sushi        | 2021-01-07 | 2021-01-01 |
+| A          | curry        | 2021-01-07 | 2021-01-01 |
+| B          | sushi        | 2021-01-09 | 2021-01-04 |
+
 
 ### 8. What is the total items and amount spent for each member before they became a member?
 ````sql
 SELECT
 	s.customer_id,
-	SUM(m.price) as total_spend_amount,
-	COUNT(DISTINCT s.product_id) AS total_items
+	COUNT(DISTINCT s.product_id) AS total_items,
+	SUM(m.price) as total_spend_amount
 FROM dannys_diner.members p
 JOIN dannys_diner.sales s ON s.customer_id = p.customer_id
 JOIN dannys_diner.menu m ON m.product_id = s.product_id
@@ -160,9 +163,10 @@ ORDER BY 1
 ````
 ### Answer:
 | customer_id | total_items | total_spend_amount |
-| --- | --- | --- |
-| A | 2 | 25 |
-| B | 2 | 40 |
+| ---        | ---         | ---                |
+| A          | 2           | 25                 |
+| B          | 2           | 40                 |
+
 
 ### 9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier — how many points would each customer have?
 ````sql
@@ -207,6 +211,68 @@ ORDER BY 1
 | B | 820 |
 
 
+### Bonus Questions
 
+### 1. Join All The Things - Recreate the table with: customer_id, order_date, product_name, price, member (Y/N)
+````sql
+SELECT 
+	s.customer_id, s.order_date,m.product_name,m.price,
+	CASE WHEN s.order_date >= p.join_date THEN 'Y' ELSE 'N' END AS member
+FROM dannys_diner.sales s 
+LEFT JOIN dannys_diner.members p ON p.customer_id = s.customer_id
+LEFT JOIN dannys_diner.menu m ON m.product_id = s.product_id
+ORDER BY 1,2
+````
+### Answer:
+| customer_id | order_date | product_name | price | member |
+| ---        | ---        | ---          | ---   | ---    |
+| A          | 2021-01-01 | sushi        | 10    | N      |
+| A          | 2021-01-01 | curry        | 15    | N      |
+| A          | 2021-01-07 | curry        | 15    | Y      |
+| A          | 2021-01-10 | ramen        | 12    | Y      |
+| A          | 2021-01-11 | ramen        | 12    | Y      |
+| A          | 2021-01-11 | ramen        | 12    | Y      |
+| B          | 2021-01-01 | curry        | 15    | N      |
+| B          | 2021-01-02 | curry        | 15    | N      |
+| B          | 2021-01-04 | sushi        | 10    | N      |
+| B          | 2021-01-11 | sushi        | 10    | Y      |
+| B          | 2021-01-16 | ramen        | 12    | Y      |
+| B          | 2021-02-01 | ramen        | 12    | Y      |
+| C          | 2021-01-01 | ramen        | 12    | N      |
+| C          | 2021-01-01 | ramen        | 12    | N      |
+| C          | 2021-01-07 | ramen        | 12    | N      |
 
+### 2. Rank All The Things - Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
+
+````sql
+WITH BASE AS (
+SELECT 
+	s.customer_id, s.order_date,m.product_name,m.price,p.join_date,
+	CASE WHEN s.order_date >= p.join_date THEN 'Y' ELSE 'N' END AS member
+FROM dannys_diner.sales s 
+LEFT JOIN dannys_diner.members p ON p.customer_id = s.customer_id
+LEFT JOIN dannys_diner.menu m ON m.product_id = s.product_id
+)
+SELECT *,
+	CASE WHEN member = 'N' THEN NULL ELSE  
+	RANK() OVER(PARTITION BY customer_id,member ORDER BY order_date) END AS ranking
+FROM BASE
+````
+### Answer:
+ustomer_id	order_date	product_name	price	member	ranking
+A	2021-01-01	sushi	10	N	NULL
+A	2021-01-01	curry	15	N	NULL
+A	2021-01-07	curry	15	Y	1
+A	2021-01-10	ramen	12	Y	2
+A	2021-01-11	ramen	12	Y	3
+A	2021-01-11	ramen	12	Y	3
+B	2021-01-01	curry	15	N	NULL
+B	2021-01-02	curry	15	N	NULL
+B	2021-01-04	sushi	10	N	NULL
+B	2021-01-11	sushi	10	Y	1
+B	2021-01-16	ramen	12	Y	2
+B	2021-02-01	ramen	12	Y	3
+C	2021-01-01	ramen	12	N	NULL
+C	2021-01-01	ramen	12	N	NULL
+C	2021-01-07	ramen	12	N	NULL
 
