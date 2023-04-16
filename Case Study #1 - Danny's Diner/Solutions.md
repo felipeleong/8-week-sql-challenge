@@ -8,12 +8,11 @@ JOIN dannys_diner.menu m ON m.product_id = s.product_id
 GROUP BY 1
 ORDER BY 1;
 ````
-#### Answer:
-| customer_id | total_sales |
-| ----------- | ----------- |
-| A           | 76          |
-| B           | 74          |
-| C           | 36          |
+| customer_id | total_amount |
+| --- | --- |
+| A | 76 |
+| B | 74 |
+| C | 36 |
 
 ### 2. How many days has each customer visited the restaurant?
 ````sql
@@ -191,7 +190,7 @@ SELECT
 	s.customer_id, 
 	SUM(CASE WHEN m.product_name = 'sushi' THEN m.price * 20 
 	   WHEN s.order_date BETWEEN p.join_date AND  p.join_date + interval '6 days' THEN m.price * 20
-	   ELSE m.price * 10 END) AS points
+	   ELSE m.price * 10 END) AS total_points
 FROM dannys_diner.members p
 JOIN dannys_diner.sales s ON s.customer_id = p.customer_id
 JOIN dannys_diner.menu m ON m.product_id = s.product_id
@@ -200,7 +199,7 @@ GROUP BY 1
 ORDER BY 1
 ````
 ### Answer:
-| customer_id | points |
+| customer_id | total_points |
 | --- | --- |
 | A | 1370 |
 | B | 820 |
