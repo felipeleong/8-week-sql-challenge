@@ -173,13 +173,13 @@ WITH BASE AS (
 	JOIN dannys_diner.menu m ON m.product_id = s.product_id
 )
 SELECT 
-	customer_id,SUM(points)
+	customer_id,SUM(points) as total_points
 FROM BASE
 GROUP BY 1
 ORDER BY 1  
 ````
 ### Answer:
-| customer_id | sum |
+| customer_id | total_points |
 | --- | --- |
 | A | 860 |
 | B | 940 |
