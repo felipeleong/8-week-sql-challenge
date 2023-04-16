@@ -18,17 +18,18 @@ ORDER BY 1;
 ````sql
 SELECT 
 	customer_id,
-	COUNT(DISTINCT order_date) as date
+	COUNT(DISTINCT order_date) as visit_count
 FROM dannys_diner.sales
 GROUP BY 1
 ORDER BY 1;
 ````
 #### Answer:
 | customer_id | visit_count |
-| ----------- | ----------- |
-| A           | 4          |
-| B           | 6          |
-| C           | 2          |
+| --- | --- |
+| A | 4 |
+| B | 6 |
+| C | 2 |
+
 
 ### 3. What was the first item from the menu purchased by each customer?
 ````sql
@@ -50,12 +51,13 @@ GROUP BY customer_id, product_name
 ORDER BY 1;
 ````
 #### Answer:
-| customer_id | product_name | 
-| ----------- | ----------- |
-| A           | curry        | 
-| A           | sushi        | 
-| B           | curry        | 
-| C           | ramen        |
+| customer_id | product_name |
+| --- | --- |
+| A | curry |
+| A | sushi |
+| B | curry |
+| C | ramen |
+
 
 ### 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 ````sql
