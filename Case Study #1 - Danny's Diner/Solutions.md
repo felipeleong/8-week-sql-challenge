@@ -68,7 +68,7 @@ FROM dannys_diner.sales s
 JOIN dannys_diner.menu m ON m.product_id = s.product_id
 GROUP BY 1
 ORDER BY 2 DESC
-LIMIT 1
+LIMIT 1;
 ````
 #### Answer:
 | product_name | count_of_product |
@@ -91,7 +91,7 @@ WITH BASE AS (
 )
 SELECT customer_id,product_name,count_of_product
 FROM BASE 
-WHERE RANK = 1
+WHERE RANK = 1;
 ````
 #### Answer:
 | customer_id | product_name | count_of_product |
@@ -116,7 +116,7 @@ WITH BASE AS (
 SELECT customer_id,product_name, join_date, order_date
 FROM BASE 
 WHERE first_item = 1 
-ORDER BY join_date,order_date 
+ORDER BY join_date,order_date;
 ````
 #### Answer:
 
@@ -138,7 +138,7 @@ WITH BASE AS (
 SELECT customer_id,product_name, join_date, order_date
 FROM BASE 
 WHERE first_item = 1 
-ORDER BY join_date,order_date 
+ORDER BY join_date,order_date;
 ````
 ### Answer:
 | customer_id | product_name | join_date  | order_date |
@@ -159,7 +159,7 @@ JOIN dannys_diner.sales s ON s.customer_id = p.customer_id
 JOIN dannys_diner.menu m ON m.product_id = s.product_id
 WHERE s.order_date < p.join_date
 GROUP BY 1
-ORDER BY 1
+ORDER BY 1;
 ````
 ### Answer:
 | customer_id | total_items | total_spend_amount |
@@ -181,7 +181,7 @@ SELECT
 	customer_id,SUM(points) as total_points
 FROM BASE
 GROUP BY 1
-ORDER BY 1  
+ORDER BY 1;  
 ````
 ### Answer:
 | customer_id | total_points |
@@ -202,7 +202,7 @@ JOIN dannys_diner.sales s ON s.customer_id = p.customer_id
 JOIN dannys_diner.menu m ON m.product_id = s.product_id
 WHERE s.order_date < '2021-01-31'::date
 GROUP BY 1
-ORDER BY 1
+ORDER BY 1;
 ````
 ### Answer:
 | customer_id | total_points |
@@ -221,7 +221,7 @@ SELECT
 FROM dannys_diner.sales s 
 LEFT JOIN dannys_diner.members p ON p.customer_id = s.customer_id
 LEFT JOIN dannys_diner.menu m ON m.product_id = s.product_id
-ORDER BY 1,2
+ORDER BY 1,2;
 ````
 ### Answer:
 | customer_id | order_date | product_name | price | member |
@@ -257,7 +257,7 @@ SELECT
 	customer_id,order_date,product_name,price,member,
 	CASE WHEN member = 'N' THEN NULL ELSE  
 	RANK() OVER(PARTITION BY customer_id,member ORDER BY order_date) END AS ranking
-FROM BASE
+FROM BASE;
 
 ````
 ### Answer:
