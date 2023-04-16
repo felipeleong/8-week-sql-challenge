@@ -1,4 +1,4 @@
-### 1.What is the total amount each customer spent at the restaurant?
+### 1. What is the total amount each customer spent at the restaurant?
 ````sql
 SELECT 
 	s.customer_id,
@@ -15,7 +15,7 @@ ORDER BY 1;
 | B           | 74          |
 | C           | 36          |
 
-### 2.How many days has each customer visited the restaurant?
+### 2. How many days has each customer visited the restaurant?
 ````sql
 SELECT 
 	customer_id,
@@ -73,5 +73,32 @@ LIMIT 1
 | most_purchased | product_name | 
 | ----------- | ----------- |
 | 8       | ramen |
+
+
+### 5. Which item was the most popular for each customer?
+````sql
+WITH BASE AS (
+	SELECT 
+		s.customer_id,
+		m.product_name,
+		COUNT(s.product_id) as count_of_product,
+		DENSE_RANK() OVER(PARTITION BY customer_id ORDER BY COUNT(s.product_id) DESC) as RANK
+	FROM dannys_diner.sales s 
+	JOIN dannys_diner.menu m ON m.product_id = s.product_id
+	GROUP BY 1,2
+)
+SELECT customer_id,product_name,count_of_product
+FROM BASE 
+WHERE RANK = 1
+````
+#### Answer:
+| customer_id | product_name | order_count |
+| ----------- | ---------- |------------  |
+| A           | ramen        |  3   |
+| B           | sushi        |  2   |
+| B           | curry        |  2   |
+| B           | ramen        |  2   |
+| C           | ramen        |  3   |
+
 
 
