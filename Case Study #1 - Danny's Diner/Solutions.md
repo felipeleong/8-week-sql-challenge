@@ -116,7 +116,6 @@ WHERE first_item = 1
 ORDER BY join_date,order_date 
 ````
 #### Answer:
-|"customer_id"|	"product_name"|	"join_date"	|"order_date"|
-|"A"	|"curry"	|"2021-01-07"|	"2021-01-07"|
-|"B"	|"sushi"	|"2021-01-09"|	"2021-01-11"|
+
+[data-1681611344437.csv](https://github.com/felipeleong/8-week-sql-challenge/files/11241064/data-1681611344437.csv)
 
