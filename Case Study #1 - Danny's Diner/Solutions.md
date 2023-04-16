@@ -24,4 +24,9 @@ FROM dannys_diner.sales
 GROUP BY 1
 ORDER BY 1;
 ````
-
+#### Answer:
+| customer_id | visit_count |
+| ----------- | ----------- |
+| A           | 4          |
+| B           | 6          |
+| C           | 2          |
