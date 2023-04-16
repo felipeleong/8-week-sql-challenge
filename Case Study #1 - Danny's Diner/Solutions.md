@@ -259,20 +259,21 @@ SELECT *,
 FROM BASE
 ````
 ### Answer:
-ustomer_id	order_date	product_name	price	member	ranking
-A	2021-01-01	sushi	10	N	NULL
-A	2021-01-01	curry	15	N	NULL
-A	2021-01-07	curry	15	Y	1
-A	2021-01-10	ramen	12	Y	2
-A	2021-01-11	ramen	12	Y	3
-A	2021-01-11	ramen	12	Y	3
-B	2021-01-01	curry	15	N	NULL
-B	2021-01-02	curry	15	N	NULL
-B	2021-01-04	sushi	10	N	NULL
-B	2021-01-11	sushi	10	Y	1
-B	2021-01-16	ramen	12	Y	2
-B	2021-02-01	ramen	12	Y	3
-C	2021-01-01	ramen	12	N	NULL
-C	2021-01-01	ramen	12	N	NULL
-C	2021-01-07	ramen	12	N	NULL
+| customer_id | order_date  | product_name | price | join_date   | member | ranking |
+|-------------|-------------|--------------|-------|--------------|---------|---------|
+| A           | 2021-01-01  | sushi        | 10    | 2021-01-07   | N      |         |
+| A           | 2021-01-01  | curry        | 15    | 2021-01-07   | N      |         |
+| A           | 2021-01-07  | curry        | 15    | 2021-01-07   | Y      | 1       |
+| A           | 2021-01-10  | ramen        | 12    | 2021-01-07   | Y      | 2       |
+| A           | 2021-01-11  | ramen        | 12    | 2021-01-07   | Y      | 3       |
+| A           | 2021-01-11  | ramen        | 12    | 2021-01-07   | Y      | 3       |
+| B           | 2021-01-01  | curry        | 15    | 2021-01-09   | N      |         |
+| B           | 2021-01-02  | curry        | 15    | 2021-01-09   | N      |         |
+| B           | 2021-01-04  | sushi        | 10    | 2021-01-09   | N      |         |
+| B           | 2021-01-11  | sushi        | 10    | 2021-01-09   | Y      | 1       |
+| B           | 2021-01-16  | ramen        | 12    | 2021-01-09   | Y      | 2       |
+| B           | 2021-02-01  | ramen        | 12    | 2021-01-09   | Y      | 3       |
+| C           | 2021-01-01  | ramen        | 12    |              | N      |         |
+| C           | 2021-01-01  | ramen        | 12    |              | N      |         |
+| C           | 2021-01-07  | ramen        | 12    |              | N      |         |
 
