@@ -126,7 +126,7 @@ ORDER BY join_date,order_date
 ````sql
 WITH BASE AS (
 	SELECT s.customer_id,m.product_name, p.join_date, s.order_date,
-		DENSE_RANK() OVER(PARTITION BY s.customer_id ORDER BY s.order_date desc) as first_item
+		DENSE_RANK() OVER(PARTITION BY s.customer_id ORDER BY s.order_date DESC) as first_item
 	FROM dannys_diner.members p
 	JOIN dannys_diner.sales s ON s.customer_id = p.customer_id
 	JOIN dannys_diner.menu m ON m.product_id = s.product_id
@@ -143,4 +143,30 @@ ORDER BY join_date,order_date
 |A	     |	sushi	  | 2021-01-07|	2021-01-01|
 |A	     |	curry	  | 2021-01-07|	2021-01-01|
 |B           |	sushi	  | 2021-01-09|	2021-01-04|
+
+### 8. What is the total items and amount spent for each member before they became a member?
+````sql
+SELECT
+	s.customer_id,
+	SUM(m.price) as total_spend_amount,
+	COUNT(DISTINCT s.product_id) AS total_items
+FROM dannys_diner.members p
+JOIN dannys_diner.sales s ON s.customer_id = p.customer_id
+JOIN dannys_diner.menu m ON m.product_id = s.product_id
+WHERE s.order_date < p.join_date
+GROUP BY 1
+ORDER BY 1
+````
+### Answer:
+| customer_id | total_items | total_spend_amount |
+| --- | --- | --- |
+| A | 2 | 25 |
+| B | 2 | 40 |
+
+
+
+
+
+
+
 
