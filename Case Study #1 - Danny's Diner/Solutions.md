@@ -117,5 +117,5 @@ ORDER BY join_date,order_date
 ````
 #### Answer:
 
-[data-1681611344437.csv](https://github.com/felipeleong/8-week-sql-challenge/files/11241064/data-1681611344437.csv)
+
 
