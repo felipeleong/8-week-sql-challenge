@@ -4,3 +4,4 @@ SELECT
 	COUNT(*) AS "number of pizzas ordered"
 FROM pizza_runner.customer_orders;
 ````
+### Answer
