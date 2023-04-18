@@ -56,8 +56,8 @@ ORDER BY 1;
 | 2                     | 18                              |
 | 3                     | 29                              |
 
-/*we can conclude that the average time it takes to make an extra pizza is between 6 and 11 minutes.
-Furthermore, the average time to make two pizzas is 18 minutes, therefore to make one pizza it should take on average 9 minutes and not 12 minutes.*/
+*we can conclude that the average time it takes to make an extra pizza is between 6 and 11 minutes.
+Furthermore, the average time to make two pizzas is 18 minutes, therefore to make one pizza it should take on average 9 minutes and not 12 minutes.*
 
 ### 4.What was the average distance travelled for each customer?
 ````sql
@@ -132,3 +132,4 @@ ORDER BY 2
 | 2        | 8        | 93.60 |
 | 1        | 10       | 60.00 |
 
+*It is time to check runner 2, as it is the one with the highest average speed, with 93 km, it could be a database error or that runner 2 was very late in delivery times.*
