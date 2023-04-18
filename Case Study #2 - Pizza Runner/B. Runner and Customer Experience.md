@@ -99,13 +99,9 @@ ORDER BY 1
 
 ### 5. What was the difference between the longest and shortest delivery times for all orders?
 ````sql
-WITH BASE AS (
-	SELECT 
-		MAX(duration)::numeric AS max_duration,MIN(duration)::numeric AS min_duration
-	FROM pizza_runner.runner_orders
-)
-SELECT max_duration-min_duration AS difference
-FROM BASE
+SELECT 
+	MAX(duration)::numeric - MIN(duration)::numeric AS difference
+FROM pizza_runner.runner_orders
 ````
 ### Answer: 
 | difference |
