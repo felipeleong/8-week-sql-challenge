@@ -68,7 +68,7 @@ FROM pizza_runner.runner_orders ro
 JOIN pizza_runner.customer_orders co ON co.order_id = ro.order_id
 WHERE duration IS NOT NULL
 GROUP BY 1
-ORDER BY 1
+ORDER BY 1;
 
 ````
 ### Answer:
@@ -88,7 +88,7 @@ SELECT
 FROM pizza_runner.runner_orders ro
 WHERE duration IS NOT NULL
 GROUP BY 1
-ORDER BY 1
+ORDER BY 1;
 ````
 ### Answer:
 | runner_id | Average distance |
@@ -101,7 +101,7 @@ ORDER BY 1
 ````sql
 SELECT 
 	MAX(duration)::numeric - MIN(duration)::numeric AS difference
-FROM pizza_runner.runner_orders
+FROM pizza_runner.runner_orders;
 ````
 ### Answer: 
 | difference |
@@ -118,7 +118,7 @@ FROM pizza_runner.customer_orders co
 JOIN pizza_runner.runner_orders ro ON co.order_id = ro.order_id
 WHERE distance IS NOT NULL OR duration IS NOT NULL
 GROUP BY 1,2
-ORDER BY 2
+ORDER BY 2;
 ````
 ### Answer: 
 | runner_id | order_id | average speed |
