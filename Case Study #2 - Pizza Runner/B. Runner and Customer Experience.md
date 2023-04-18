@@ -108,6 +108,27 @@ FROM pizza_runner.runner_orders
 |------------|
 |     30     |
 
-
-
+### 6. What was the average speed for each runner for each delivery and do you notice any trend for these values?*/
+````sql
+SELECT
+	runner_id,
+	co.order_id,
+	ROUND(AVG(distance::numeric/duration::numeric)*60,2)
+FROM pizza_runner.customer_orders co 
+JOIN pizza_runner.runner_orders ro ON co.order_id = ro.order_id
+WHERE distance IS NOT NULL OR duration IS NOT NULL
+GROUP BY 1,2
+ORDER BY 2
+````
+### Answer: 
+| runner_id | order_id | round |
+|----------|----------|-------|
+| 1        | 1        | 37.50 |
+| 1        | 2        | 44.44 |
+| 1        | 3        | 40.20 |
+| 2        | 4        | 35.10 |
+| 3        | 5        | 40.00 |
+| 2        | 7        | 60.00 |
+| 2        | 8        | 93.60 |
+| 1        | 10       | 60.00 |
 
