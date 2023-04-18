@@ -163,7 +163,7 @@ ORDER BY 1
 Runner 2 has 75% successful delivery.
 Runner 3 has 50% successful delivery*
 
-| runner_id | round |
+| runner_id | Successful delivery |
 |-----------|-------|
 | 1         | 100   |
 | 2         | 75    |
