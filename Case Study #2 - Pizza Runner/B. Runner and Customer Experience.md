@@ -5,3 +5,8 @@ SELECT
 FROM pizza_runner.customer_orders;
 ````
 ### Answer
+| registration_week | runner_signup |
+|------------------|---------------|
+| 1                | 2             |
+| 2               |   1           |
+| 3                | 1             |
