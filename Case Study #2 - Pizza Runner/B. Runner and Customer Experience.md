@@ -160,8 +160,10 @@ ORDER BY 1
 ### Answer: 
 
 *Runner 1 has 100% successful delivery.
+
 *Runner 2 has 75% successful delivery.
-*Runner 3 has 50% successful delivery
+
+*Runner 3 has 50% successful delivery*
 
 | runner_id | Successful delivery |
 |-----------|-------|
