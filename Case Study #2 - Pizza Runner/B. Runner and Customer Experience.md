@@ -66,8 +66,10 @@ SELECT
 	ROUND(AVG(distance::numeric),2) AS "Average distance"
 FROM pizza_runner.runner_orders ro
 JOIN pizza_runner.customer_orders co ON co.order_id = ro.order_id
+WHERE duration IS NOT NULL
 GROUP BY 1
 ORDER BY 1
+
 ````
 ### Answer:
 | customer_id | Average distance |
@@ -78,11 +80,37 @@ ORDER BY 1
 | 104         | 10.00           |
 | 105         | 25.00           |
 
+````sql
+-------- FOR EACH RUNNER
+SELECT
+	runner_id,
+	ROUND(AVG(distance::numeric),2) AS "Average distance"
+FROM pizza_runner.runner_orders ro
+WHERE duration IS NOT NULL
+GROUP BY 1
+ORDER BY 1
+````
+### Answer:
+| runner_id | Average distance |
+|-----------|-----------------|
+| 1         | 15.85           |
+| 2         | 23.93           |
+| 3         | 10.00           |
 
-
-
-
-
+### 5. What was the difference between the longest and shortest delivery times for all orders?
+````sql
+WITH BASE AS (
+	SELECT 
+		MAX(duration)::numeric AS max_duration,MIN(duration)::numeric AS min_duration
+	FROM pizza_runner.runner_orders
+)
+SELECT max_duration-min_duration AS difference
+FROM BASE
+````
+### Answer: 
+| difference |
+|------------|
+|     30     |
 
 
 
