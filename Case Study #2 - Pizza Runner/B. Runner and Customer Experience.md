@@ -133,3 +133,40 @@ ORDER BY 2;
 | 1        | 10       | 60.00 |
 
 *It is time to check runner 2, as it is the one with the highest average speed, with 93 km, it could be a database error or that runner 2 was very late in delivery times.*
+
+### 7.What is the successful delivery percentage for each runner?
+````sql
+WITH BASE AS (
+	SELECT 
+		runner_id,
+		SUM(CASE WHEN distance IS NULL AND duration IS NULL THEN 0 ELSE 1 END) AS "Successful delivery" ,
+		COUNT(order_id) AS "Total orders"
+	FROM pizza_runner.runner_orders
+	GROUP BY 1
+)
+SELECT
+	runner_id,ROUND(("Successful delivery"::NUMERIC /  "Total orders"::NUMERIC) *100,0)
+FROM BASE
+ORDER BY 1;
+
+---WITHOUT CTE
+SELECT 
+	runner_id,
+	ROUND((SUM(CASE WHEN distance IS NULL AND duration IS NULL THEN 0 ELSE 1 END)/ COUNT(order_id)::NUMERIC)*100,0)
+FROM pizza_runner.runner_orders
+GROUP BY 1
+ORDER BY 1
+````
+### Answer: 
+
+*Runner 1 has 100% successful delivery.
+Runner 2 has 75% successful delivery.
+Runner 3 has 50% successful delivery*
+
+| runner_id | round |
+|-----------|-------|
+| 1         | 100   |
+| 2         | 75    |
+| 3         | 50    |
+
+
