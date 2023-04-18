@@ -59,5 +59,31 @@ ORDER BY 1;
 /*we can conclude that the average time it takes to make an extra pizza is between 6 and 11 minutes.
 Furthermore, the average time to make two pizzas is 18 minutes, therefore to make one pizza it should take on average 9 minutes and not 12 minutes.*/
 
+### 4.What was the average distance travelled for each customer?
+````sql
+SELECT
+	co.customer_id,
+	ROUND(AVG(distance::numeric),2) AS "Average distance"
+FROM pizza_runner.runner_orders ro
+JOIN pizza_runner.customer_orders co ON co.order_id = ro.order_id
+GROUP BY 1
+ORDER BY 1
+````
+### Answer:
+| customer_id | Average distance |
+|-------------|-----------------|
+| 101         | 20.00           |
+| 102         | 16.73           |
+| 103         | 23.40           |
+| 104         | 10.00           |
+| 105         | 25.00           |
+
+
+
+
+
+
+
+
 
 
