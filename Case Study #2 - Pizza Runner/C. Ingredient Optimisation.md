@@ -23,4 +23,32 @@ Answer:
 | Meatlovers  | Bacon,BBQ Sauce,Beef,Cheese,Chicken,Mushrooms,Pepperoni,Salami|
 | Vegetarian | Cheese,Mushrooms,Onions,Peppers,Tomatoes,Tomato Sauce|
 
+### 2.What was the most commonly added extra?
+*create a view with the information of de pizza_id, pizza_name, toppings name and id*
 
+*this will help us to create a relationship with the data model.*
+````sql
+CREATE OR REPLACE VIEW pizza_runner.pizza_recepies_view
+ AS
+ WITH base AS (
+         SELECT pn.pizza_name,
+            pn.pizza_id,
+            unnest(string_to_array(pr.toppings, ','::text))::integer AS topping_id
+           FROM pizza_runner.pizza_recipes pr
+             JOIN pizza_runner.pizza_names pn ON pr.pizza_id = pn.pizza_id
+        ), toppings AS (
+         SELECT pizza_toppings.topping_id,
+            pizza_toppings.topping_name
+           FROM pizza_runner.pizza_toppings
+        )
+ SELECT b.pizza_id,
+    b.pizza_name,
+    t.topping_id,
+    t.topping_name
+   FROM base b
+     JOIN pizza_runner.pizza_toppings t ON b.topping_id = t.topping_id
+  ORDER BY b.pizza_id;
+
+ALTER TABLE pizza_runner.pizza_recepies_view
+    OWNER TO postgres;
+````
