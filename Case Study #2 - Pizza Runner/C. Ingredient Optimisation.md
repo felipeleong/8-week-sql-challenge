@@ -19,7 +19,7 @@ ORDER BY 1
 Answer: 
 | pizza_id |             topping_name              |
 |---------|--------------------------------------|
-|    1    | Bacon,BBQ Sauce,Beef,Cheese,Chicken,...|
-|    2    | Cheese,Mushrooms,Onions,Peppers,Toma...|
+|    1    | Bacon,BBQ Sauce,Beef,Cheese,Chicken,Mushrooms,Pepperoni,Salami|
+|    2    | Cheese,Mushrooms,Onions,Peppers,Tomatoes,Tomato Sauce|
 
 
