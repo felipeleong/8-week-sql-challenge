@@ -76,13 +76,13 @@ Resultset:
 
 ````sql
 WITH customer_extra AS (
-SELECT 
-	UNNEST(string_to_array(extras,','))::integer AS extra_topping_id
-FROM pizza_runner.customer_orders co
+	SELECT 
+		UNNEST(string_to_array(extras,','))::integer AS extra_topping_id
+	FROM pizza_runner.customer_orders co
 )
 ,toppings AS (
-SELECT topping_id,topping_name
-FROM pizza_runner.pizza_toppings
+	SELECT topping_id,topping_name
+	FROM pizza_runner.pizza_toppings
 )
 SELECT
 	ce.extra_topping_id,
