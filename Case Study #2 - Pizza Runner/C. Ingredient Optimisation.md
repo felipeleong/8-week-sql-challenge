@@ -99,4 +99,5 @@ ORDER BY 3 DESC
 | 1               | Bacon        | 4                     |
 | 4               | Cheese       | 1                     |
 | 5               | Chicken      | 1                     |
+
 *The most commonly added extra is Bacon
