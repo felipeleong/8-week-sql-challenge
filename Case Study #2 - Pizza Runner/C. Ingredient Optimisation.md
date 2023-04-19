@@ -57,35 +57,20 @@ ALTER TABLE pizza_runner.pizza_recepies_view
 SELECT * FROM pizza_runner.pizza_recepies_view
 ````
 Resultset: 
-| pizza_id | topping_name  |
-| -------- | ------------- |
-| 1        | Meatlovers    |
-| 2        | BBQ Sauce     |
-| 1        | Meatlovers    |
-| 8        | Pepperoni     |
-| 1        | Meatlovers    |
-| 4        | Cheese        |
-| 1        | Meatlovers    |
-| 10       | Salami        |
-| 1        | Meatlovers    |
-| 5        | Chicken       |
-| 1        | Meatlovers    |
-| 1        | Bacon         |
-| 1        | Meatlovers    |
-| 6        | Mushrooms     |
-| 1        | Meatlovers    |
-| 3        | Beef          |
-| 2        | Vegetarian   |
-| 12       | Tomato Sauce |
-| 2        | Vegetarian   |
-| 4        | Cheese       |
-| 2        | Vegetarian   |
-| 6        | Mushrooms    |
-| 2        | Vegetarian   |
-| 7        | Onions       |
-| 2        | Vegetarian   |
-| 9        | Peppers      |
-| 2        | Vegetarian   |
-| 11       | Tomatoes     |
+| pizza_id | pizza_name  | topping_id | topping_name   |
+|---------|-------------|-----------|----------------|
+| 1       | Meatlovers  | 2         | BBQ Sauce      |
+| 1       | Meatlovers  | 8         | Pepperoni      |
+| 1       | Meatlovers  | 4         | Cheese         |
+| 1       | Meatlovers  | 10        | Salami         |
+| 1       | Meatlovers  | 5         | Chicken        |
+| 1       | Meatlovers  | 1         | Bacon          |
+| 1       | Meatlovers  | 6         | Mushrooms      |
+| 1       | Meatlovers  | 3         | Beef           |
+| 2       | Vegetarian | 12        | Tomato Sauce   |
+| 2       | Vegetarian | 4         | Cheese         |
+| 2       | Vegetarian | 6         | Mushrooms      |
+| 2       | Vegetarian | 7         | Onions         |
+| 2       | Vegetarian | 9         | Peppers        |
+| 2       | Vegetarian | 11        | Tomatoes       |
 
-````
