@@ -76,8 +76,7 @@ Resultset:
 
 ````sql
 WITH customer_extra AS (
-	SELECT 
-		UNNEST(string_to_array(extras,','))::integer AS extra_topping_id
+	SELECT UNNEST(string_to_array(extras,','))::integer AS extra_topping_id
 	FROM pizza_runner.customer_orders co
 )
 ,toppings AS (
