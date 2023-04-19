@@ -49,6 +49,18 @@ Resultset:
 | 2       | Vegetarian | 11        | Tomatoes       |
 
 ### 1. What are the standard ingredients for each pizza?
+
+*With the view:*
+````sql
+SELECT 
+	pizza_name,
+	STRING_AGG(topping_name,', ') AS topping_name
+FROM pizza_runner.pizza_recepies_view
+GROUP BY 1
+````
+
+*Without the view:*
+
 ````SQL
 WITH BASE AS (
 SELECT 
