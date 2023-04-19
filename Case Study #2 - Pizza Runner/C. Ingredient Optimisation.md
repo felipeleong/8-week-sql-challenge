@@ -74,3 +74,29 @@ Resultset:
 | 2       | Vegetarian | 9         | Peppers        |
 | 2       | Vegetarian | 11        | Tomatoes       |
 
+````sql
+WITH customer_extra AS (
+SELECT 
+	UNNEST(string_to_array(extras,','))::integer AS extra_topping_id
+FROM pizza_runner.customer_orders co
+)
+,toppings AS (
+SELECT topping_id,topping_name
+FROM pizza_runner.pizza_toppings
+)
+SELECT
+	ce.extra_topping_id,
+	t.topping_name, 
+	COUNT(*) AS "count of extra topping"
+FROM customer_extra ce
+JOIN toppings t ON t.topping_id = ce.extra_topping_id
+GROUP BY 1,2
+ORDER BY 3 DESC
+````
+### Answer:
+| extra_topping_id | topping_name | count of extra topping |
+|-----------------|--------------|-----------------------|
+| 1               | Bacon        | 4                     |
+| 4               | Cheese       | 1                     |
+| 5               | Chicken      | 1                     |
+*The most commonly added extra is Bacon
