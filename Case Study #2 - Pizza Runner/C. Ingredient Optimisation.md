@@ -19,8 +19,8 @@ ORDER BY 1
 ````
 Answer: 
 | pizza_name |             topping_name              |
-|---------|--------------------------------------|
-Meatlovers | Bacon,BBQ Sauce,Beef,Cheese,Chicken,Mushrooms,Pepperoni,Salami|
+|------------|--------------------------------------|
+| Meatlovers  | Bacon,BBQ Sauce,Beef,Cheese,Chicken,Mushrooms,Pepperoni,Salami|
 | Vegetarian | Cheese,Mushrooms,Onions,Peppers,Tomatoes,Tomato Sauce|
 
 
