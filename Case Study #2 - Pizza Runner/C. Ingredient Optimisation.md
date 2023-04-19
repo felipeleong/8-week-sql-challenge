@@ -6,22 +6,19 @@ CREATE OR REPLACE VIEW pizza_runner.pizza_recepies_view
  AS
  WITH base AS (
          SELECT pn.pizza_name,
-            pn.pizza_id,
-            unnest(string_to_array(pr.toppings, ','::text))::integer AS topping_id
+            	pn.pizza_id,
+            	unnest(string_to_array(pr.toppings, ','::text))::integer AS topping_id
            FROM pizza_runner.pizza_recipes pr
              JOIN pizza_runner.pizza_names pn ON pr.pizza_id = pn.pizza_id
-        ), toppings AS (
-         SELECT pizza_toppings.topping_id,
-            pizza_toppings.topping_name
+        ), 
+	toppings AS (
+         SELECT pizza_toppings.topping_id, pizza_toppings.topping_name
            FROM pizza_runner.pizza_toppings
         )
- SELECT b.pizza_id,
-    b.pizza_name,
-    t.topping_id,
-    t.topping_name
-   FROM base b
-     JOIN pizza_runner.pizza_toppings t ON b.topping_id = t.topping_id
-  ORDER BY b.pizza_id;
+ SELECT b.pizza_id,b.pizza_name,t.topping_id,t.topping_name
+ FROM base b
+ JOIN pizza_runner.pizza_toppings t ON b.topping_id = t.topping_id
+ ORDER BY b.pizza_id;
 
 ALTER TABLE pizza_runner.pizza_recepies_view
     OWNER TO postgres;
