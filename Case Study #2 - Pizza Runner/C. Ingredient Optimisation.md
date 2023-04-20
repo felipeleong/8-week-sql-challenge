@@ -121,8 +121,97 @@ ORDER BY 3 DESC
 | 2                    | BBQ Sauce    | 1                           |
 
 *The most commonly exclusion is Cheese*
+
 ### 4. Generate an order item for each record in the customers_orders table in the format of one of the following:
 *Meat Lovers
 Meat Lovers - Exclude Beef
 Meat Lovers - Extra Bacon
 Meat Lovers - Exclude Cheese, Bacon - Extra Mushroom, Peppers*
+
+
+### query_test():
+````sql
+WITH Without_extra_exclusions AS (
+	SELECT 
+		co.order_id,
+		co.pizza_id,
+		pn.pizza_name,
+		null AS exclusions,
+		null AS extras
+	FROM pizza_runner.customer_orders co
+	JOIN pizza_runner.pizza_names pn ON pn.pizza_id = co.pizza_id
+	WHERE co.exclusions IS NULL AND extras IS  NULL
+)
+,exclusions_topping AS (
+	SELECT 
+		et.order_id,
+		et.pizza_id,
+		et.pizza_name,
+		pt.topping_name AS exclusions,
+		null AS extras
+	FROM(
+		SELECT
+			co.order_id,
+			co.pizza_id,
+			string_to_table(co.exclusions,',')::integer AS exclusions,
+			pn.pizza_name
+		FROM pizza_runner.customer_orders co
+		JOIN pizza_runner.pizza_names pn ON pn.pizza_id = co.pizza_id
+	) et
+	JOIN pizza_runner.pizza_toppings pt ON pt.topping_id = et.exclusions
+)
+,extras_topping AS (
+SELECT 
+		et.order_id,
+		et.pizza_id,
+		et.pizza_name,
+		null AS exclusions,
+		pt.topping_name AS extras
+	FROM(
+		SELECT
+			co.order_id,
+			co.pizza_id,
+			string_to_table(co.extras,',')::integer AS extras,
+			pn.pizza_name
+		FROM pizza_runner.customer_orders co
+		JOIN pizza_runner.pizza_names pn ON pn.pizza_id = co.pizza_id
+	) et
+	JOIN pizza_runner.pizza_toppings pt ON pt.topping_id = et.extras
+)
+, final_union AS (
+	SELECT * FROM Without_extra_exclusions
+	UNION 
+	SELECT * FROM exclusions_topping
+	UNION 
+	SELECT * FROM extras_topping
+)
+SELECT *,
+	CASE WHEN exclusions IS NULL AND extras IS NULL THEN pizza_name
+		 WHEN exclusions IS NOT NULL THEN CONCAT(pizza_name,'-','Exclude ',exclusions) 
+		 ELSE CONCAT(pizza_name,' Extra ',extras) END AS full_order
+FROM final_union
+ORDER BY order_id
+````
+### Answer:
+| order_id | pizza_id | pizza_name   | exclusions     | extras              | full_order                     |
+|---------|----------|--------------|----------------|---------------------|--------------------------------|
+| 1       | 1        | Meatlovers   |                |                     | Meatlovers                     |
+| 2       | 1        | Meatlovers   |                |                     | Meatlovers                     |
+| 3       | 1        | Meatlovers   |                |                     | Meatlovers                     |
+| 3       | 2        | Vegetarian   |                |                     | Vegetarian                     |
+| 4       | 1        | Meatlovers   | Cheese         |                     | Meatlovers-Exclude Cheese      |
+| 4       | 2        | Vegetarian   | Cheese         |                     | Vegetarian-Exclude Cheese      |
+| 5       | 1        | Meatlovers   |                | Bacon               | Meatlovers Extra Bacon         |
+| 6       | 2        | Vegetarian   |                |                     | Vegetarian                     |
+| 7       | 2        | Vegetarian   |                | Bacon               | Vegetarian Extra Bacon         |
+| 8       | 1        | Meatlovers   |                |                     | Meatlovers                     |
+| 9       | 1        | Meatlovers   | Cheese         |                     | Meatlovers-Exclude Cheese      |
+| 9       | 1        | Meatlovers   |                | Bacon               | Meatlovers Extra Bacon         |
+| 9       | 1        | Meatlovers   |                | Chicken             | Meatlovers Extra Chicken       |
+| 10      | 1        | Meatlovers   | BBQ Sauce      |                     | Meatlovers-Exclude BBQ Sauce   |
+| 10      | 1        | Meatlovers   | Mushrooms      |                     | Meatlovers-Exclude Mushrooms   |
+| 10      | 1        | Meatlovers   |                | Bacon               | Meatlovers Extra Bacon         |
+| 10      | 1        | Meatlovers   |                | Cheese              | Meatlovers Extra Cheese        |
+| 10      | 1        | Meatlovers   |                |                     | Meatlovers                     |
+
+
