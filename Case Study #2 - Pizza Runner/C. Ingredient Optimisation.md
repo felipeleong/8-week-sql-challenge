@@ -180,9 +180,9 @@ SELECT
 )
 , final_union AS (
 	SELECT * FROM Without_extra_exclusions
-	UNION 
+	UNION ALL
 	SELECT * FROM exclusions_topping
-	UNION 
+	UNION ALL
 	SELECT * FROM extras_topping
 )
 SELECT *,
@@ -193,23 +193,24 @@ FROM final_union
 ORDER BY order_id
 
 ````
-### Answer:
-| order_id | pizza_id | pizza_name  | exclusions             | extras                 | full_order                              |
-| -------- | -------- | -----------| ----------------------| ----------------------| --------------------------------------- |
-| 1        | 1        | Meatlovers |                        |                        | Meatlovers                              |
-| 2        | 1        | Meatlovers |                        |                        | Meatlovers                              |
-| 3        | 1        | Meatlovers |                        |                        | Meatlovers                              |
-| 3        | 2        | Vegetarian |                        |                        | Vegetarian                              |
-| 4        | 1        | Meatlovers | Cheese                 |                        | Meatlovers - Exclude Cheese             |
-| 4        | 2        | Vegetarian | Cheese                 |                        | Vegetarian - Exclude Cheese             |
-| 5        | 1        | Meatlovers |                        | Bacon                  | Meatlovers - Extra Bacon                |
-| 6        | 2        | Vegetarian |                        |                        | Vegetarian                              |
-| 7        | 2        | Vegetarian |                        | Bacon                  | Vegetarian - Extra Bacon                |
-| 8        | 1        | Meatlovers |                        |                        | Meatlovers                              |
-| 9        | 1        | Meatlovers | Cheese                 |                        | Meatlovers - Exclude Cheese             |
-| 9        | 1        | Meatlovers |                        | Bacon                  | Meatlovers - Extra Bacon                |
-| 9        | 1        | Meatlovers |                        | Chicken                | Meatlovers - Extra Chicken              |
-| 10       | 1        | Meatlovers | BBQ Sauce, Mushrooms   |                        | Meatlovers - Exclude BBQ Sauce, Mushrooms|
-| 10       | 1        | Meatlovers |                        | Bacon, Cheese          | Meatlovers - Extra Bacon, Extra Cheese |
-| 10       | 1        | Meatlovers |                        |                        | Meatlovers                              |
+| order_id | pizza_id | pizza_name  | exclusions           | extras                  | full_order                          |
+| -------- | -------- | -----------| --------------------|------------------------| -----------------------------------|
+| 1        | 1        | Meatlovers |                      |                         | Meatlovers                          |
+| 2        | 1        | Meatlovers |                      |                         | Meatlovers                          |
+| 3        | 2        | Vegetarian |                      |                         | Vegetarian                         |
+| 3        | 1        | Meatlovers |                      |                         | Meatlovers                          |
+| 4        | 2        | Vegetarian | Cheese              |                         | Vegetarian - Exclude Cheese        |
+| 4        | 1        | Meatlovers | Cheese              |                         | Meatlovers - Exclude Cheese        |
+| 4        | 1        | Meatlovers | Cheese              |                         | Meatlovers - Exclude Cheese        |
+| 5        | 1        | Meatlovers |                      | Bacon                   | Meatlovers - Extra Bacon           |
+| 6        | 2        | Vegetarian |                      |                         | Vegetarian                         |
+| 7        | 2        | Vegetarian |                      | Bacon                   | Vegetarian - Extra Bacon           |
+| 8        | 1        | Meatlovers |                      |                         | Meatlovers                          |
+| 9        | 1        | Meatlovers | Cheese              |                         | Meatlovers - Exclude Cheese        |
+| 9        | 1        | Meatlovers |                      | Chicken, Bacon          | Meatlovers - Extra Chicken, Bacon |
+| 10       | 1        | Meatlovers | BBQ Sauce, Mushrooms |                         | Meatlovers - Exclude BBQ Sauce     |
+| 10       | 1        | Meatlovers | Mushrooms           |                         | Meatlovers - Exclude Mushrooms     |
+| 10       | 1        | Meatlovers |                      |                         | Meatlovers                          |
+| 10       | 1        | Meatlovers |                      | Cheese, Bacon           | Meatlovers - Extra Cheese, Bacon   |
+
 
