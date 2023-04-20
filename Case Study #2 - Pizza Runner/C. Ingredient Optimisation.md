@@ -91,3 +91,34 @@ ORDER BY 3 DESC
 | 5               | Chicken      | 1                     |
 
 *The most commonly added extra is Bacon
+
+### 3.What was the most common exclusion?
+````SQL
+WITH customer_exclusions AS (
+	SELECT 
+		*,
+		string_to_table(exclusions,',')::INT AS exclusions_topping_id
+	FROM pizza_runner.customer_orders
+),
+toppings AS (
+	SELECT topping_id,topping_name
+	FROM pizza_runner.pizza_toppings
+)
+SELECT 
+	ce.exclusions_topping_id,
+	t.topping_name,
+	COUNT(*) AS "count of exclusions topping"
+FROM customer_exclusions ce
+JOIN toppings t ON t.topping_id = ce.exclusions_topping_id
+GROUP BY 1,2
+ORDER BY 3 DESC
+````
+### Answer:
+| exclusions_topping_id | topping_name | count of exclusions topping |
+|----------------------|--------------|-----------------------------|
+| 4                    | Cheese       | 4                           |
+| 6                    | Mushrooms    | 1                           |
+| 2                    | BBQ Sauce    | 1                           |
+
+*The most commonly exclusion is Cheese*
+
