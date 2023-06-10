@@ -1,4 +1,4 @@
-*create a view with the information of de pizza_id, pizza_name, toppings name and id*
+*create a view with pizza_id, pizza_name, toppings name and id*
 
 *this will help us to create a relationship with the data model.*
 ````sql
