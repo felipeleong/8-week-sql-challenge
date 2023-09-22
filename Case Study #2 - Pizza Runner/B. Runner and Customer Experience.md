@@ -9,8 +9,8 @@ GROUP BY 1;
 ### Answer
 | registration_week | runner_signup |
 |------------------|---------------|
-| 1                | 2             |
-| 2               |   1           |
+| 1                | 1            |
+| 2               |   2         |
 | 3                | 1             |
 ### 2. What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
 ````sql
