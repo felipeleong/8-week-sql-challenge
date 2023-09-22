@@ -1,6 +1,6 @@
 # 8-week-sql-challenge
 
-This repository serves as the solution for the 8 case studies from the #8WeekSQLChallenge.💡
+*This repository serves as the solution for the 8 case studies from the #8WeekSQLChallenge.💡*
 
 
 Challenges #8WeekSQLChallenge at https://8weeksqlchallenge.com 
