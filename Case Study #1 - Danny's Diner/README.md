@@ -1,6 +1,5 @@
-(https://user-images.githubusercontent.com/98699089/156214170-bbca7608-9291-405f-aefa-be2796fc4355.png)
 
-Introduction
+###Introduction###
 Did you know that over 115 million kilograms of pizza is consumed daily worldwide??? (Well according to Wikipedia anyway…)
 
 Danny was scrolling through his Instagram feed when something really caught his eye - “80s Retro Styling and Pizza Is The Future!”
