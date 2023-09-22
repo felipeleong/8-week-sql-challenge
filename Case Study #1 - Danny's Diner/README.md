@@ -5,3 +5,5 @@
 ### INTRODUCTION
 
 --------------
+
+![modelo de datos pizza runner](https://github.com/felipeleong/8-week-sql-challenge/assets/116659667/43426c87-b400-4484-a02f-0ac9147eee35)
