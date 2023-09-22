@@ -53,7 +53,7 @@ SELECT
 	pizza_name,
 	STRING_AGG(topping_name,', ') AS topping_name
 FROM pizza_runner.pizza_recepies_view
-GROUP BY 1
+GROUP BY 1;
 ````
 
 
