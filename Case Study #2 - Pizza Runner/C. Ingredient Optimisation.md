@@ -126,8 +126,6 @@ Meat Lovers - Exclude Beef
 Meat Lovers - Extra Bacon
 Meat Lovers - Exclude Cheese, Bacon - Extra Mushroom, Peppers*
 
-
-### query_test():
 ````sql
 WITH Without_extra_exclusions AS (
 	SELECT 
@@ -188,7 +186,7 @@ SELECT *,
 		 WHEN exclusions IS NOT NULL THEN CONCAT(pizza_name,' - Exclude ',exclusions) 
 		 ELSE CONCAT(pizza_name,' - Extra ',extras) END AS full_order
 FROM final_union
-ORDER BY order_id
+ORDER BY order_id;
 
 ````
 | order_id | pizza_id | pizza_name  | exclusions           | extras                  | full_order                          |
