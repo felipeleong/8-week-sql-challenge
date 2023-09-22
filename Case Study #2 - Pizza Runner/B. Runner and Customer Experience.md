@@ -1,8 +1,10 @@
 ### 1. How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
 ````sql
 SELECT 
-	COUNT(*) AS "number of pizzas ordered"
-FROM pizza_runner.customer_orders;
+	EXTRACT(WEEK FROM registration_date) AS registration_week,
+	COUNT(runner_id) AS runner_signup
+FROM pizza_runner.runners
+GROUP BY 1;
 ````
 ### Answer
 | registration_week | runner_signup |
