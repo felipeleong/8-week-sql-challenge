@@ -82,13 +82,12 @@ FROM customer_extra ce
 JOIN toppings t ON t.topping_id = ce.extra_topping_id
 GROUP BY 1,2
 ORDER BY 3 DESC
+LIMIT 1;
 ````
 ### Answer:
 | extra_topping_id | topping_name | count of extra topping |
 |-----------------|--------------|-----------------------|
 | 1               | Bacon        | 4                     |
-| 4               | Cheese       | 1                     |
-| 5               | Chicken      | 1                     |
 
 *The most commonly added extra is Bacon
 
@@ -112,13 +111,12 @@ FROM customer_exclusions ce
 JOIN toppings t ON t.topping_id = ce.exclusions_topping_id
 GROUP BY 1,2
 ORDER BY 3 DESC
+LIMIT 1;
 ````
 ### Answer:
 | exclusions_topping_id | topping_name | count of exclusions topping |
 |----------------------|--------------|-----------------------------|
 | 4                    | Cheese       | 4                           |
-| 6                    | Mushrooms    | 1                           |
-| 2                    | BBQ Sauce    | 1                           |
 
 *The most commonly exclusion is Cheese*
 
