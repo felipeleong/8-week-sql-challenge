@@ -1,4 +1,4 @@
-![image](https://github.com/felipeleong/8-week-sql-challenge/assets/116659667/8af909ed-6042-4019-9f60-df4e506f4710)
+(https://user-images.githubusercontent.com/98699089/156214170-bbca7608-9291-405f-aefa-be2796fc4355.png)
 
 Introduction
 Did you know that over 115 million kilograms of pizza is consumed daily worldwide??? (Well according to Wikipedia anyway…)
