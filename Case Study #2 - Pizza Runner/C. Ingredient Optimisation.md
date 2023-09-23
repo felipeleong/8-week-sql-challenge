@@ -163,6 +163,7 @@ cte_extras AS (
 		FROM cte_base cteb 
 		WHERE exclusions IS NULL AND extras IS NOT NULL) extras_t
 	JOIN pizza_runner.pizza_recepies_view pv ON pv.topping_id = extras_t.extras::int
+	--The Subquery is because there is an order with a pizza that has an extra from another recipe
 ),
 cte_exlusion_extras AS (
 	SELECT 
