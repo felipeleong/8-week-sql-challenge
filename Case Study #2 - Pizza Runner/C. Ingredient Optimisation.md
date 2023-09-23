@@ -135,7 +135,7 @@ SELECT
 FROM pizza_runner.pizza_recepies_view
 GROUP BY 1,2;
 --------
-WITH CTE_base AS (
+WITH cte_base AS (
 	SELECT 
 		co.order_id,co.pizza_id,co.exclusions,co.extras, prv.pizza_name
 	FROM pizza_runner.customer_orders co
@@ -144,7 +144,7 @@ WITH CTE_base AS (
 cte_orders_without_e AS (
 	SELECT cte.order_id,cte.pizza_id,cte.pizza_name,
 		pizza_name AS order_item
-	FROM CTE_BASE cte
+	FROM cte_base cte
 	WHERE exclusions IS NULL AND extras IS NULL
 ),
 cte_exclusions AS (
@@ -208,5 +208,23 @@ final_union_orders AS (
 )
 SELECT * FROM final_union_orders
 ORDER BY order_id;
+````
+### Answer:
+| order_id | pizza_id | pizza_name  | order_item                                      |
+|----------|----------|-------------|-------------------------------------------------|
+| 1        | 1        | Meatlovers  | Meatlovers                                      |
+| 2        | 1        | Meatlovers  | Meatlovers                                      |
+| 3        | 2        | Vegetarian  | Vegetarian                                      |
+| 3        | 1        | Meatlovers  | Meatlovers                                      |
+| 4        | 1        | Meatlovers  | Meatlovers - Exclude Cheese                    |
+| 4        | 1        | Meatlovers  | Meatlovers - Exclude Cheese                    |
+| 4        | 2        | Vegetarian  | Vegetarian - Exclude Cheese                    |
+| 5        | 1        | Meatlovers  | Meatlovers - Extra Bacon                       |
+| 6        | 2        | Vegetarian  | Vegetarian                                      |
+| 7        | 2        | Vegetarian  | Vegetarian - Extra Bacon                       |
+| 8        | 1        | Meatlovers  | Meatlovers                                      |
+| 9        | 1        | Meatlovers  | Meatlovers - Exclude Cheese - Extra Bacon, Chicken |
+| 10       | 1        | Meatlovers  | Meatlovers                                      |
+| 10       | 1        | Meatlovers  | Meatlovers - Exclude BBQ Sauce, Mushrooms - Extra Bacon, Cheese |
 
 
