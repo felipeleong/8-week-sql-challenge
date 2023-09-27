@@ -1,6 +1,6 @@
 # 8-week-sql-challenge
 
-*This repository stores the database creation and the solution of the different cases of the challenge: Data With Danny #8WeekSQLChallenge.💡*
+*This repository stores the database creation and the solution of the different cases of the challenge: Data With Danny #8WeekSQLChallenge.*💡
 
 
 Challenges #8WeekSQLChallenge at https://8weeksqlchallenge.com 
