@@ -139,7 +139,7 @@ ORDER BY 2;
 ### 7.What is the successful delivery percentage for each runner?
 ````sql
 WITH BASE AS (
-	SELECT 
+	SELECT
 		runner_id,
 		SUM(CASE WHEN distance IS NULL AND duration IS NULL THEN 0 ELSE 1 END) AS "Successful delivery" ,
 		COUNT(order_id) AS "Total orders"
