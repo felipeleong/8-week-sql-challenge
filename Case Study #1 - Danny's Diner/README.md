@@ -1,4 +1,4 @@
-*Case 1 - Danny's Diner*
+*Case 1 - Danny's Diner* https://8weeksqlchallenge.com/case-study-1/
 
 ![dannys diner](https://github.com/felipeleong/8-week-sql-challenge/assets/116659667/fe683491-529c-4a77-9bb1-b788a7e6f052)
 
