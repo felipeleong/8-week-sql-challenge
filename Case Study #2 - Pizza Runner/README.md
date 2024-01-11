@@ -1,4 +1,4 @@
-*Case 2 - Pizza Runner*
+*Case 2 - Pizza Runner* https://8weeksqlchallenge.com/case-study-2/
 
 ![PIZZA RUNNER](https://github.com/felipeleong/8-week-sql-challenge/assets/116659667/26495f30-4b06-4863-a498-f7b4babe8403)
 
